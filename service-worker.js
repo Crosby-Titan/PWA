@@ -40,9 +40,8 @@ self.addEventListener('fetch', (event) => {
     
             return fetch(event.request)
               .then((response) => {
-                const cacheName = 'my-pwa-cache';
-    
-                caches.open(cacheName)
+   
+                caches.open(CACHE_NAME)
                   .then((cache) => {
                     cache.put(event.request, response.clone());
                   });
