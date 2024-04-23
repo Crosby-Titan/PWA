@@ -18,15 +18,17 @@ self.addEventListener('install',(event) => {
 
 self.addEventListener('activate', async (event) => {
 
-    let keys = await caches.keys();
+    event.waitUntil(async ()=>{
+      let keys = await caches.keys();
 
-    keys.map((cache) => {
-        if (cache !== CACHE_NAME) {
-            return caches.delete(cache);
-        }
+       keys.map((cache) => {
+           if (cache !== CACHE_NAME) {
+               return caches.delete(cache);
+           }
+       });
+     
+       return self.clients.claim();
     });
-
-    return self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
