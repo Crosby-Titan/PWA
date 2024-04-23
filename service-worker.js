@@ -9,22 +9,22 @@ self.addEventListener('install',(event) => {
         '/icons/main-logo.png',
       ];
 
-    event.waitUntil((async ()=>{
+    event.waitUntil(async ()=>{
         let cache = await caches.open(CACHE_NAME);
 
         return await cache.addAll(resourcesToCache);
-    }))();
+    });
 });
 
 self.addEventListener('activate', async (event) => {
 
     let keys = await caches.keys();
 
-    keys.map(((cache) => {
+    keys.map((cache) => {
         if (cache !== CACHE_NAME) {
             return caches.delete(cache);
         }
-    }))();
+    });
 
     return self.clients.claim();
 });
