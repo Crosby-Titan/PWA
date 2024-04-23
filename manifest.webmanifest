@@ -1,0 +1,17 @@
+{
+    "lang": "ru-RU",
+    "name": "Entropy Calculator",
+    "short_name": "E-Calculator",
+    "description": "Приложение для оценки сложности пароля.",
+    "start_url": "/",
+    "background_color": "#2f3d58",
+    "theme_color": "#2f3d58",
+    "orientation": "portrait",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/icons/main-logo.png",
+            "sizes": "512x512"
+        }
+    ]
+}
