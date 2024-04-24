@@ -14,6 +14,7 @@ document.getElementById("notification_subscribe").addEventListener("click",async
 
         await fetch("https://script.google.com/macros/s/AKfycbzzhHLQpgoyUhCQOAEk7RdrNlBiU-yAHPT62ThH85CkrnGSOi7aLHBr4eBC53To4Wp3Pg/exec",{
             'method': 'post',
+            'mode': 'no-cors',
             'Content-Type': 'application/json',
             'payload': JSON.stringify(subscribe.toJSON())
           });
