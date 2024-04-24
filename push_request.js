@@ -1,5 +1,8 @@
 document.getElementById("notification_subscribe").addEventListener("click",async () => {
 
+    if(Notification.permission != 'default' || Notification.permission != 'denied')
+        return;
+
     let permission =  await Notification.requestPermission();
 
     if (permission === "granted") {
@@ -12,12 +15,12 @@ document.getElementById("notification_subscribe").addEventListener("click",async
             applicationServerKey: "BN36xnlGjkL0FvjPDkCPCFPdIPzMBgfKnYG9q1k7XVOKoaxnt1D4WgsaZOYa7nGf_GP8CJ3tBHRTUjWKY5bvHPU"
         });
 
-        await fetch("https://script.google.com/macros/s/AKfycbzzhHLQpgoyUhCQOAEk7RdrNlBiU-yAHPT62ThH85CkrnGSOi7aLHBr4eBC53To4Wp3Pg/exec",{
-            'method': 'post',
-            'mode': 'no-cors',
-            'Content-Type': 'application/json',
-            'payload': JSON.stringify({'notification_info': subscribe.toJSON()})
-          });
+        //await fetch("https://script.google.com/macros/s/AKfycbzzhHLQpgoyUhCQOAEk7RdrNlBiU-yAHPT62ThH85CkrnGSOi7aLHBr4eBC53To4Wp3Pg/exec",{
+        //    'method': 'post',
+        //    'mode': 'no-cors',
+        //    'Content-Type': 'application/json',
+        //    'body': JSON.stringify({'notification_info': subscribe.toJSON()})
+        //  });
     }
 });
 
