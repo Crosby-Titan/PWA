@@ -13,7 +13,7 @@ function calculateEntropy(password){
         H += Math.abs((probability * log2));
     }
     
-    return Math.round(Math.abs(H));
+    return Math.fround(Math.abs(H));
 
 };
 
