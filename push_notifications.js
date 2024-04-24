@@ -1,8 +1,9 @@
-const serviceWorkerRegistration = await navigator.serviceWorker.ready;
+self.addEventListener("push",async (event)=>{
 
-self.addEventListener("push",(event)=>{
     if (Notification.permission != "granted")
         return;
+
+    const serviceWorkerRegistration = await navigator.serviceWorker.ready;
 
     event.waitUntil(serviceWorkerRegistration.showNotification('E-Calculator', {
         body: event.data.text(),
