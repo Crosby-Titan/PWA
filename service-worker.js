@@ -1,55 +1,37 @@
 const CACHE_NAME = "password-entropy-calculator-v1";
 
-self.addEventListener('install',(event) => {
+const resourcesToCache = [
+  '/index.html',
+  '/style.css',
+  '/password_entropy_calculator.js',
+  '/icons/main-logo.png',
+];
 
-    const resourcesToCache = [
-        '/index.html',
-        '/style.css',
-        '/password_entropy_calculator.js',
-        '/icons/main-logo.png',
-      ];
-
-    event.waitUntil(async ()=>{
-        let cache = await caches.open(CACHE_NAME);
-
-        return await cache.addAll(resourcesToCache);
-    });
+self.addEventListener('install', event => {
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    cache.addAll(resourcesToCache);
+  })());
 });
 
-self.addEventListener('activate', async (event) => {
+self.addEventListener('fetch', event => {
+  event.respondWith((async () => {
+    const cache = await caches.open(CACHE_NAME);
 
-    event.waitUntil(async ()=>{
-      let keys = await caches.keys();
+    const cachedResponse = await cache.match(event.request);
+    if (cachedResponse) {
+      return cachedResponse;
+    } else {
+        try {
+          // If the resource was not in the cache, try the network.
+          const fetchResponse = await fetch(event.request);
 
-       keys.map((cache) => {
-           if (cache !== CACHE_NAME) {
-               return caches.delete(cache);
-           }
-       });
-     
-       return self.clients.claim();
-    });
-});
-
-self.addEventListener('fetch', (event) => {
-
-    event.respondWith(
-        caches.match(event.request)
-          .then((response) => {
-            if (response) {
-              return response;
-            }
-    
-            return fetch(event.request)
-              .then((response) => {
-   
-                caches.open(CACHE_NAME)
-                  .then((cache) => {
-                    cache.put(event.request, response.clone());
-                  });
-    
-                return response;
-              });
-          })
-      );
+          // Save the resource in the cache and return it.
+          cache.put(event.request, fetchResponse.clone());
+          return fetchResponse;
+        } catch (e) {
+          console.log(e.message);
+        }
+    }
+  })());
 });
