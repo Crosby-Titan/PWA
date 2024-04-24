@@ -5,8 +5,8 @@ const resourcesToCache = [
   '/style.css',
   '/password_entropy_calculator.js',
   '/icons/main-logo.png',
-  'symbols_information.js',
-  'validation.js'
+  '/symbols_information.js',
+  '/validation.js'
 ];
 
 self.addEventListener('install', event => {
