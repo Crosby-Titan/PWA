@@ -1,6 +1,6 @@
 document.getElementById("notification_subscribe").addEventListener("click",async () => {
 
-    if(Notification.permission != 'default' || Notification.permission != 'denied')
+    if(Notification.permission != 'denied' || Notification.permission != 'default')
         return;
 
     let permission =  await Notification.requestPermission();
