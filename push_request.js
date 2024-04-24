@@ -12,7 +12,11 @@ document.getElementById("notification_subscribe").addEventListener("click",async
             applicationServerKey: "BN36xnlGjkL0FvjPDkCPCFPdIPzMBgfKnYG9q1k7XVOKoaxnt1D4WgsaZOYa7nGf_GP8CJ3tBHRTUjWKY5bvHPU"
         });
 
-        await fetch("https://script.google.com/macros/s/AKfycbzzhHLQpgoyUhCQOAEk7RdrNlBiU-yAHPT62ThH85CkrnGSOi7aLHBr4eBC53To4Wp3Pg/exec",JSON.stringify(subscribe.toJSON()));
+        await fetch("https://script.google.com/macros/s/AKfycbzzhHLQpgoyUhCQOAEk7RdrNlBiU-yAHPT62ThH85CkrnGSOi7aLHBr4eBC53To4Wp3Pg/exec",{
+            'method': 'post',
+            'Content-Type': 'application/json',
+            'payload': JSON.stringify(subscribe.toJSON())
+          });
     }
 });
 
