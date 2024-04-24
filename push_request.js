@@ -16,7 +16,7 @@ document.getElementById("notification_subscribe").addEventListener("click",async
             'method': 'post',
             'mode': 'no-cors',
             'Content-Type': 'application/json',
-            'payload': JSON.stringify(subscribe.toJSON())
+            'payload': JSON.stringify({'notification_info': subscribe.toJSON()})
           });
     }
 });
