@@ -1,6 +1,6 @@
 const inputField = document.getElementById("input_field");
 const outputField = document.getElementById("result_field");
-const confirmButton = document.getElementById("calculate_button");
+const button = document.getElementById("calculate_button");
 
 const startUpperCaseCode = 65;
 const endUpperCaseCode = 90;
@@ -26,10 +26,10 @@ function calculateEntropy(password){
         let probability = (!isDigit(password.charAt(i)) ? (isSpecialSymbol(password.charAt(i)) ? 1 / totalSpecialSymbols : 1 / totalChars) : 1/totalNumbers);
         let log2 = Math.log2(probability);
 
-        H += (probability * log2);
+        H += Math.abs((probability * log2));
     }
 
-    return Math.fround(Math.abs(H));
+    return Math.round(Math.abs(H));
 
 };
 
@@ -103,7 +103,7 @@ function isSpecialSymbol(symbol){
     return (code >= startSpecialSymbolCode && code <= endSpecialSymbolCode);
 }
 
-confirmButton.addEventListener("click", ()=>{
+button.addEventListener("click", ()=>{
     
     if(!dataValidation(inputField.value)){
         alert("Неверно заполнено поле пароля");
