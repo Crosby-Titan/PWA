@@ -1,7 +1,7 @@
 const CACHE_NAME = "password-entropy-calculator-v1";
 
 const resourcesToCache = [
-  '/index.html',
+  '/',
   '/style.css',
   '/password_entropy_calculator.js',
   '/icons/main-logo.png',
