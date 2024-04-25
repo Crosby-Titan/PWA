@@ -4,8 +4,7 @@ const resourcesToCache = [
   '/style.css',
   '/password_entropy_calculator.js',
   '/symbols_information.js',
-  '/validation.js',
-  '/firebase_sdk.entry.js'
+  '/validation.js'
 ];
 
 self.addEventListener('install', event => {
