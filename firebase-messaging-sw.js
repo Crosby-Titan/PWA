@@ -30,3 +30,14 @@ messaging.onBackgroundMessage(function(payload) {
   
     self.registration.showNotification(notificationTitle, notificationOptions);
 });
+
+navigator?.serviceWorker.controller.addEventListener("message",async (event)=>{
+
+    const { message } = event.data;
+
+    if(message == "notification_request"){
+        await messaging.requestPermission();
+
+        navigator?.serviceWorker.controller.postMessage({message: await messaging.getToken(), title: "token"})
+    }
+});

@@ -1,15 +1,11 @@
-let token;
+const button = document.getElementById("notification_subscribe");
 
-document.getElementById("notification_subscribe").addEventListener("click",async () => {
+button.addEventListener("click",async () => {
 
-    try{
-        await messaging.requestPermission();
+    navigator?.serviceWorker.controller.postMessage({ message: "notification_request"});
 
-        token = await messaging.getToken();
-    }
-    catch(error){
-        console.log(error.message);
-        token = null;
-    }
+    navigator?.serviceWorker.controller.addEventListener("message",(event)=>{
+        const {message , title} = event.data;
+    });
 });
 
