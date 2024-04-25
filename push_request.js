@@ -15,8 +15,9 @@ const messaging = firebase.messaging();
 
 document.getElementById("notification_subscribe").addEventListener("click",async () => {
 
-    if (Notification.permission === 'default'){
-        console.log(`Token: ${await messaging.getToken()}`);
+    if (Notification.permission === 'granted'){
+        await messaging.requestPermission();
+        alert(await messaging.getToken());
     }
 });
 

@@ -18,13 +18,10 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage(function(payload) {
     console.log('Получено уведомление:', payload);
     
-    const notification = JSON.parse(payload.notification);
-  
-    const notificationTitle = notification.title;
+    const notificationTitle = payload.data.title;
     const notificationOptions = {
-      body: notification.body,
-      icon: notification.icon,
-      click_action: notification.click_action
+        body: payload.data.body,
+        icon: payload.data.icon
     };
   
     self.registration.showNotification(notificationTitle, notificationOptions);
