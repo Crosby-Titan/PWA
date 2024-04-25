@@ -29,5 +29,5 @@ navigator?.serviceWorker.getRegistrations().then(registrations => {
     });
   }
 }).catch(error => {
-  console.error('Error checking service worker registrations:', error);
+  console.error('Ошибка при проверке дублирования Service Worker', error);
 });
