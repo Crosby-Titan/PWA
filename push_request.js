@@ -1,6 +1,3 @@
-importScripts('https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/8.7.0/firebase-messaging.js');
-
 const config = {
     apiKey: "AIzaSyBJD0pFT23NP7l0itfzoys1vegruVxGag8",
     authDomain: "telegrambot-b7130.firebaseapp.com",
