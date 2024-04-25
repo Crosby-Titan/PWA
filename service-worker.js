@@ -39,10 +39,7 @@ self.addEventListener('fetch', event => {
       return cachedResponse;
     } else {
         try {
-          // If the resource was not in the cache, try the network.
           const fetchResponse = await fetch(event.request);
-
-          // Save the resource in the cache and return it.
           cache.put(event.request, fetchResponse.clone());
           return fetchResponse;
         } catch (e) {
@@ -52,16 +49,17 @@ self.addEventListener('fetch', event => {
   })());
 });
 
-//self.addEventListener("push",async (event)=>{
-//
-//  if (Notification.permission != "granted")
-//      return;
-//
-//  const serviceWorkerRegistration = await navigator.serviceWorker.ready;
-//
-//  event.waitUntil(serviceWorkerRegistration.showNotification('E-Calculator', {
-//      body: event.data.text(),
-//      icon: 'icons/notification.png'
-//    }));
-//  
-//});
+messaging.onBackgroundMessage(function(payload) {
+  console.log('Получено уведомление:', payload);
+  
+  const notification = JSON.parse(payload.notification);
+
+  const notificationTitle = notification.title;
+  const notificationOptions = {
+    body: notification.body,
+    icon: notification.icon,
+    click_action: notification.click_action
+  };
+
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
