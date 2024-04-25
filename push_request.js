@@ -17,7 +17,12 @@ document.getElementById("notification_subscribe").addEventListener("click",async
 
     if (Notification.permission === 'granted'){
         await messaging.requestPermission();
-        alert(await messaging.getToken());
+
+        const res = await navigator.permissions.query({ name: 'clipboard-write' });
+        
+        if(res.state === "granted"){
+            await navigator.clipboard.writeText(await messaging.getToken());
+        }
     }
 });
 
