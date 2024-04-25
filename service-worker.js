@@ -1,11 +1,8 @@
 const CACHE_NAME = "password-entropy-calculator-v1";
 
 const resourcesToCache = [
-  '/',
   '/style.css',
   '/password_entropy_calculator.js',
-  '/icons/main-logo.png',
-  '/icons/notification.png',
   '/symbols_information.js',
   '/validation.js',
   '/firebase_sdk.entry.js'
@@ -33,19 +30,25 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', event => {
   event.respondWith((async () => {
-    const cache = await caches.open(CACHE_NAME);
+    const requestURL = new URL(event.request.url);
 
+    if (requestURL.origin === location.origin && requestURL.pathname === '/') {
+      return fetch(event.request);
+    }
+
+    const cache = await caches.open(CACHE_NAME);
     const cachedResponse = await cache.match(event.request);
+
     if (cachedResponse) {
       return cachedResponse;
     } else {
-        try {
-          const fetchResponse = await fetch(event.request);
-          cache.put(event.request, fetchResponse.clone());
-          return fetchResponse;
-        } catch (e) {
-          console.log(e.message);
-        }
+      try {
+        const fetchResponse = await fetch(event.request);
+        cache.put(event.request, fetchResponse.clone());
+        return fetchResponse;
+      } catch (e) {
+        console.log(e.message);
+      }
     }
   })());
 });
