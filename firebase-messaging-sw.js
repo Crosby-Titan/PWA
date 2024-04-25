@@ -15,18 +15,6 @@ const config = {
 firebase.initializeApp(config);
 const messaging = firebase.messaging();
 
-messaging.requestPermission()
-  .then(() => {
-    console.log('Разрешение на уведомления получено.');
-  })
-  .then((token) => {
-    console.log('Токен устройства:', token);
-    alert(messaging.getToken());
-  })
-  .catch((error) => {
-    console.error('Ошибка при получении токена устройства:', error);
-  });
-
 messaging.onBackgroundMessage(function(payload) {
     console.log('Получено уведомление:', payload);
     
