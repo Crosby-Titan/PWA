@@ -7,7 +7,8 @@ const resourcesToCache = [
   '/icons/main-logo.png',
   '/icons/notification.png',
   '/symbols_information.js',
-  '/validation.js'
+  '/validation.js',
+  '/firebase_sdk.entry.js'
 ];
 
 self.addEventListener('install', event => {
