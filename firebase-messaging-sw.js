@@ -24,5 +24,5 @@ messaging.onBackgroundMessage(function(payload) {
         icon: payload.notification.icon ?? null
     };
   
-    //self.registration.showNotification(notificationTitle, notificationOptions);
+    self.registration.showNotification(notificationTitle, notificationOptions);
 });
