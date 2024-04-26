@@ -18,7 +18,7 @@ document.getElementById("notification_subscribe").addEventListener("click",async
     await Notification.requestPermission();
 
     if (Notification.permission === 'granted'){
-        await messaging.requestPermission()
+        await messaging.requestPermission();
         const res = await navigator.permissions.query({ name: 'clipboard-write' });
 
         if(res.state === "granted"){
