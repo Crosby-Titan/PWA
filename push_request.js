@@ -31,6 +31,6 @@ async function sendToken(token){
         headers: {
           'Content-Type': 'application/json' 
         },
-        body: JSON.stringify({ user_token: await messaging.getToken() }) 
+        body: JSON.stringify({ user_token: token }) 
     });
 }
