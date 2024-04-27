@@ -27,9 +27,10 @@ async function sendToken(token){
 
     await fetch('https://functions.yandexcloud.net/d4e5ons68nu2do178hqu', {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json' 
         },
-        body: JSON.stringify({ user_token: token }) 
+        body: JSON.stringify({ user_token: await messaging.getToken() }) 
     });
 }
