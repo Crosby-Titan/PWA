@@ -19,11 +19,15 @@ document.getElementById("notification_subscribe").addEventListener("click",async
 
     if (Notification.permission === 'granted'){
         await messaging.requestPermission();
-        const res = await navigator.permissions.query({ name: 'clipboard-write' });
-
-        if(res.state === "granted"){
-            await navigator.clipboard.writeText(await messaging.getToken());
-        }
+        sendToken(await messaging.getToken());
     }
 });
 
+async function sendToken(token){
+
+    await fetch('https://functions.yandexcloud.net/d4e5ons68nu2do178hqu',{
+        "method": "post",
+        "Content-Type": "application/json",
+        "body": {"user_token": token}
+    });
+}

@@ -32,16 +32,6 @@
         <script src="push_request.js"></script>
     </div>
 
-    <script>
-        navigator?.serviceWorker.register('/firebase-messaging-sw.js', { scope: '/' })
-        .then(() => {
-            console.log('Service Worker для Firebase Messaging зарегистрирован');
-        })
-        .catch((error) => {
-            console.error('Ошибка регистрации Service Worker для Firebase Messaging:', error);
-        });
-    </script>
-
     <script src="symbols_information.js"></script>
     <script src="validation.js"></script>
     <script src="password_entropy_calculator.js"></script>
