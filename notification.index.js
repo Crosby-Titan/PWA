@@ -47,8 +47,7 @@ async function getAllTokens(){
         mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify({}) 
+        }
     });
 
     console.log(await response.json());
