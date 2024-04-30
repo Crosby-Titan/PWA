@@ -17,12 +17,10 @@ const messaging = firebase.messaging();
 sendNotificationBtn.addEventListener("click", async (event)=>{
     const tokens = await getAllTokens();
 
-    for(let i = 0; i < tokens.length; i++){
-        sendNotification(tokens[i].user_token);
-    }
+    sendNotification(tokens);
 });
 
-async function sendNotification(device_token){
+async function sendNotification(tokens){
     await fetch('https://fcm.googleapis.com/fcm/send', {
         'method': 'POST',
         'headers': {
@@ -30,7 +28,7 @@ async function sendNotification(device_token){
             'Content-Type': 'application/json'
         },
         'body': JSON.stringify({
-            'to': device_token,
+            'tokens': tokens,
             'notification': {
                 'title': document.getElementById("title").value,
                 'body': document.getElementById("description").value
