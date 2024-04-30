@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="notification.index.style.css">
     <title>Notification Center</title>
 </head>
 <body>
-    
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-messaging.js"></script>
+
+    <div class="container">
+        <form id="form">    
+            
+            <label for="title">Заголовок</label>
+            <input type="text" id="title">
+
+            <label for="description">Описание</label>
+            <textarea id="description"></textarea>
+
+            <button type="button" name="send_notification_btn" id="send_notification_btn">Отправить уведомление</button>
+        </form>
+        
+    </div>
+
+    <script src="notification.index.js"></script>
 </body>
 </html>
