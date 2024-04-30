@@ -18,12 +18,12 @@ sendNotificationBtn.addEventListener("click", async (event)=>{
     const tokens = await getAllTokens();
 
     for(let i = 0; i < tokens.length; i++){
-        sendNotification(tokens[i]);
+        sendNotification(tokens[i].user_token);
     }
 });
 
 async function sendNotification(device_token){
-    const response = await fetch('https://fcm.googleapis.com/fcm/send', {
+    await fetch('https://fcm.googleapis.com/fcm/send', {
         'method': 'POST',
         'headers': {
             'Authorization': 'Bearer AAAAeyoYsSs:APA91bEf14BQ-J4L5ygfVNUJ0iTQgpNyHKDgea9ajNICIYZ0iRvrEPFfoSvyi1Wef2RCBuc96HS67uGjpHrwLJ0cSIDoOoQDNlmRRkqTIfcTnrdJt_qDTeyLZspd5iiaemtcc-COOOCt',
@@ -37,18 +37,10 @@ async function sendNotification(device_token){
             }
         })
     });
-
-    console.log(await response.json())
 }
 
 async function getAllTokens(){
-    const response = await fetch('https://functions.yandexcloud.net/d4e5ons68nu2do178hqu', {
-        method: 'GET',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json' 
-        }
-    });
+    const response = await fetch('https://functions.yandexcloud.net/d4e5ons68nu2do178hqu');
 
-    console.log(await response.json());
+    return await response.json();
 }
